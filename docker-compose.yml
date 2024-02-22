@@ -1,0 +1,21 @@
+version: "3.5"
+services:
+    primary:
+        image: cockroachdb/cockroach:v23.2.1
+        hostname: crdb-primary
+        ports:
+            - 26257:26257
+            - 8080:8080
+        command: start-single-node --insecure --advertise-addr crdb-primary --config-profile replication-source
+        volumes:
+            - "${PWD}/primary/cockroach-data:/cockroach/cockroach-data"
+    standby:
+        image: cockroachdb/cockroach:v23.2.1
+        hostname: crdb-standby
+        ports:
+            - 26258:26257
+            - 8081:8080
+        command: start-single-node --insecure --advertise-addr crdb-standby --config-profile replication-target
+        volumes:
+            - "${PWD}/standby/cockroach-data:/cockroach/cockroach-data"
+
