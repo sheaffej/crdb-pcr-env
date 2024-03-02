@@ -14,6 +14,16 @@ ON 'postgresql://standby@crdb-primary:26257/?options=-ccluster=system&sslmode=di
 
 SHOW VIRTUAL CLUSTER application WITH REPLICATION STATUS;
 
+CREATE DATABASE testdb;
+use testdb;
+CREATE TABLE foo (id uuid primary key default gen_random_uuid(), value string);
+INSERT INTO foo (value) VALUES
+('aaaaa'),
+('bbbbb'),
+('ccccc'),
+('ddddd'),
+('eeeee')
+;
 
 ALTER VIRTUAL CLUSTER application COMPLETE REPLICATION TO LATEST;
 ALTER VIRTUAL CLUSTER application START SERVICE SHARED;
