@@ -8,14 +8,26 @@ services:
             - 8080:8080
         command: start-single-node --insecure --advertise-addr crdb-primary --config-profile replication-source
         volumes:
-            - "${PWD}/primary/cockroach-data:/cockroach/cockroach-data"
-    standby:
+            - "primary-data:/cockroach/cockroach-data"
+    standby1:
         image: cockroachdb/cockroach:v23.2.1
-        hostname: crdb-standby
+        hostname: crdb-standby1
         ports:
             - 26258:26257
             - 8081:8080
-        command: start-single-node --insecure --advertise-addr crdb-standby --config-profile replication-target
+        command: start-single-node --insecure --advertise-addr crdb-standby1 --config-profile replication-target
         volumes:
-            - "${PWD}/standby/cockroach-data:/cockroach/cockroach-data"
-
+            - "standby1-data:/cockroach/cockroach-data"
+    standby2:
+        image: cockroachdb/cockroach:v23.2.1
+        hostname: crdb-standby2
+        ports:
+            - 26259:26257
+            - 8082:8080
+        command: start-single-node --insecure --advertise-addr crdb-standby2 --config-profile replication-target
+        volumes:
+            - "standby2-data:/cockroach/cockroach-data"
+volumes:
+    primary-data:
+    standby1-data:
+    standby2-data:
