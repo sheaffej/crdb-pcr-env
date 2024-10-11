@@ -23,7 +23,7 @@ Then there are 4 bash scripts to execute the demo.
 # Build the PCR environment
 run/init.sh
 
-# Import the movr sampld data into the primary cluster node
+# Import the movr sample data into the primary cluster node
 run/import.sh
 
 # Run a continous workload on the primary cluster node using `dbworkload`
