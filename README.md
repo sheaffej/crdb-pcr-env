@@ -2,7 +2,7 @@
 
 This respository contains scripts to demo CockroachDB Physical Cluster Replication (PCR) using a local Docker environment.
 
-These scripts are writen in bash, for use on a MaoOS or Linux system. These scripts have not been tested on other operating systems, but could easily be modifed to work on any environment since all the import parts work within Docker containers.
+These scripts are writen in bash, for use on a MacOS or Linux system. These scripts have not been tested on other operating systems, but could easily be modifed to work on any environment since all the import parts work within Docker containers.
 
 ## Prerequisites
 To run this demo, you need to have installed locally on your system:
